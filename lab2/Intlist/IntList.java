@@ -1,6 +1,6 @@
 package intlist.Intlist;
 
-import edu.princeton.cs.algs4.In;
+// import edu.princeton.cs.algs4.In;
 
 import java.util.Formatter;
 
@@ -9,7 +9,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -33,7 +33,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -100,20 +100,6 @@ public class IntList {
         if (A.rest == null) return new IntList(A.first, B);
         return new IntList(A.first, catenate(A.rest, B));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -237,8 +223,9 @@ public class IntList {
         out.format(")");
         return out.toString();
     }
+
     public static void main(String args[]) {
-        IntList list1 = new IntList(1,null);
+        IntList list1 = new IntList(1, null);
         System.out.println(list1.toString());
     }
 }
