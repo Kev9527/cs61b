@@ -1,5 +1,3 @@
-// package intlist.Intlist;
-
 // import edu.princeton.cs.algs4.In;
 
 import java.util.Formatter;
