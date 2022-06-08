@@ -1,4 +1,4 @@
-package intlist.Intlist;
+// package intlist.Intlist;
 
 import static org.junit.Assert.*;
 
