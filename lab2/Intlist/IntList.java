@@ -1,3 +1,7 @@
+package intlist.Intlist;
+
+import edu.princeton.cs.algs4.In;
+
 import java.util.Formatter;
 
 /**
@@ -81,8 +85,10 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList lastA = A.rest;
+        while (lastA.rest != null) lastA = lastA.rest;
+        lastA.rest = B;
+        return A;
     }
 
     /**
@@ -90,8 +96,9 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if (A == null) return B;
+        if (A.rest == null) return new IntList(A.first, B);
+        return new IntList(A.first, catenate(A.rest, B));
     }
 
 
@@ -229,6 +236,10 @@ public class IntList {
         }
         out.format(")");
         return out.toString();
+    }
+    public static void main(String args[]) {
+        IntList list1 = new IntList(1,null);
+        System.out.println(list1.toString());
     }
 }
 
