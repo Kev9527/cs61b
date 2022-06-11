@@ -18,7 +18,7 @@ public class TestCalcNetForceExertedByXY {
      *  @param  actual      Double received
      *  @param  label       Label for the 'test' case
      */
-    private static void checkEquals(double expected, double actual, String label) {
+    public static void checkEquals(double expected, double actual, String label) {
         if (expected == actual) {
             System.out.println("PASS: " + label + ": Expected " + expected + " and you gave " + actual);
         } else {
@@ -31,7 +31,7 @@ public class TestCalcNetForceExertedByXY {
      *  @param  value   Double to be rounded.
      *  @param  places  Integer number of places to round VALUE to.
      */
-    private static double round(double value, int places) {
+    public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = new BigDecimal(value);
@@ -42,7 +42,7 @@ public class TestCalcNetForceExertedByXY {
     /**
      *  Checks the Planet class to make sure calcNetForceExertedByXY works.
      */
-    private static void calcNetForceExertedByXY() {
+    public static void calcNetForceExertedByXY() {
         System.out.println("Checking calcNetForceExertedByXY...");
 
         Planet p1 = new Planet(1.0, 1.0, 3.0, 4.0, 5.0, "jupiter.gif");

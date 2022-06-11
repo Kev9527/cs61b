@@ -19,7 +19,7 @@ public class TestCalcDistance {
      *  @param  label       Label for the 'test' case
      *  @param  eps         Tolerance for the double comparison.
      */
-    private static void checkEquals(double actual, double expected, String label, double eps) {
+    public static void checkEquals(double actual, double expected, String label, double eps) {
         if (Math.abs(expected - actual) <= eps * Math.max(expected, actual)) {
             System.out.println("PASS: " + label + ": Expected " + expected + " and you gave " + actual);
         } else {
@@ -30,7 +30,7 @@ public class TestCalcDistance {
     /**
      *  Checks the Planet class to make sure calcDistance works.
      */
-    private static void checkCalcDistance() {
+    public static void checkCalcDistance() {
         System.out.println("Checking calcDistance...");
 
         Planet p1 = new Planet(1.0, 1.0, 3.0, 4.0, 5.0, "jupiter.gif");

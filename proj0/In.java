@@ -49,28 +49,28 @@ import java.util.regex.Pattern;
  */
 public final class In {
     
-    private Scanner scanner;
+    public Scanner scanner;
 
     /*** begin: section (1 of 2) of code duplicated from In to StdIn */
     
     // assume Unicode UTF-8 encoding
-    private static final String CHARSET_NAME = "UTF-8";
+    public static final String CHARSET_NAME = "UTF-8";
 
     // assume language = English, country = US for consistency with System.out.
-    private static final Locale LOCALE = Locale.US;
+    public static final Locale LOCALE = Locale.US;
 
     // the default token separator; we maintain the invariant that this value 
     // is held by the scanner's delimiter between calls
-    private static final Pattern WHITESPACE_PATTERN
+    public static final Pattern WHITESPACE_PATTERN
         = Pattern.compile("\\p{javaWhitespace}+");
 
     // makes whitespace characters significant 
-    private static final Pattern EMPTY_PATTERN
+    public static final Pattern EMPTY_PATTERN
         = Pattern.compile("");
 
     // used to read the entire input. source:
     // http://weblogs.java.net/blog/pat/archive/2004/10/stupid_scanner_1.html
-    private static final Pattern EVERYTHING_PATTERN
+    public static final Pattern EVERYTHING_PATTERN
         = Pattern.compile("\\A");
 
     /*** end: section (1 of 2) of code duplicated from In to StdIn */

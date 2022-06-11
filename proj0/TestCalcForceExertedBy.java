@@ -20,7 +20,7 @@ public class TestCalcForceExertedBy {
      *  @param  label       Label for the 'test' case
      *  @param  eps         Tolerance for the double comparison.
      */
-    private static void checkEquals(double actual, double expected, String label, double eps) {
+    public static void checkEquals(double actual, double expected, String label, double eps) {
         if (Math.abs(expected - actual) <= eps * Math.max(expected, actual)) {
             System.out.println("PASS: " + label + ": Expected " + expected + " and you gave " + actual);
         } else {
@@ -32,7 +32,7 @@ public class TestCalcForceExertedBy {
     /**
      *  Checks the Planet class to make sure calcForceExertedBy works.
      */
-    private static void checkCalcForceExertedBy() {
+    public static void checkCalcForceExertedBy() {
         System.out.println("Checking calcForceExertedBy...");
 
         Planet p1 = new Planet(1.0, 1.0, 3.0, 4.0, 5.0, "jupiter.gif");

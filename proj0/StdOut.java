@@ -24,13 +24,13 @@ import java.util.Locale;
 public final class StdOut {
 
     // force Unicode UTF-8 encoding; otherwise it's system dependent
-    private static final String CHARSET_NAME = "UTF-8";
+    public static final String CHARSET_NAME = "UTF-8";
 
     // assume language = English, country = US for consistency with StdIn
-    private static final Locale LOCALE = Locale.US;
+    public static final Locale LOCALE = Locale.US;
 
     // send output here
-    private static PrintWriter out;
+    public static PrintWriter out;
 
     // this is called before invoking any methods
     static {
@@ -41,7 +41,7 @@ public final class StdOut {
     }
 
     // don't instantiate
-    private StdOut() { }
+    public StdOut() { }
 
     // close the output stream (not required)
    /**

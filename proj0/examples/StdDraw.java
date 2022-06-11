@@ -563,68 +563,68 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     public static final Color PRINCETON_ORANGE = new Color(245, 128, 37);
 
     // default colors
-    private static final Color DEFAULT_PEN_COLOR   = BLACK;
-    private static final Color DEFAULT_CLEAR_COLOR = WHITE;
+    public static final Color DEFAULT_PEN_COLOR   = BLACK;
+    public static final Color DEFAULT_CLEAR_COLOR = WHITE;
 
     // current pen color
-    private static Color penColor;
+    public static Color penColor;
 
     // default canvas size is DEFAULT_SIZE-by-DEFAULT_SIZE
-    private static final int DEFAULT_SIZE = 512;
-    private static int width  = DEFAULT_SIZE;
-    private static int height = DEFAULT_SIZE;
+    public static final int DEFAULT_SIZE = 512;
+    public static int width  = DEFAULT_SIZE;
+    public static int height = DEFAULT_SIZE;
 
     // default pen radius
-    private static final double DEFAULT_PEN_RADIUS = 0.002;
+    public static final double DEFAULT_PEN_RADIUS = 0.002;
 
     // current pen radius
-    private static double penRadius;
+    public static double penRadius;
 
     // show we draw immediately or wait until next show?
-    private static boolean defer = false;
+    public static boolean defer = false;
 
     // boundary of drawing canvas, 0% border
-    // private static final double BORDER = 0.05;
-    private static final double BORDER = 0.00;
-    private static final double DEFAULT_XMIN = 0.0;
-    private static final double DEFAULT_XMAX = 1.0;
-    private static final double DEFAULT_YMIN = 0.0;
-    private static final double DEFAULT_YMAX = 1.0;
-    private static double xmin, ymin, xmax, ymax;
+    // public static final double BORDER = 0.05;
+    public static final double BORDER = 0.00;
+    public static final double DEFAULT_XMIN = 0.0;
+    public static final double DEFAULT_XMAX = 1.0;
+    public static final double DEFAULT_YMIN = 0.0;
+    public static final double DEFAULT_YMAX = 1.0;
+    public static double xmin, ymin, xmax, ymax;
 
     // for synchronization
-    private static Object mouseLock = new Object();
-    private static Object keyLock = new Object();
+    public static Object mouseLock = new Object();
+    public static Object keyLock = new Object();
 
     // default font
-    private static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 16);
+    public static final Font DEFAULT_FONT = new Font("SansSerif", Font.PLAIN, 16);
 
     // current font
-    private static Font font;
+    public static Font font;
 
     // double buffered graphics
-    private static BufferedImage offscreenImage, onscreenImage;
-    private static Graphics2D offscreen, onscreen;
+    public static BufferedImage offscreenImage, onscreenImage;
+    public static Graphics2D offscreen, onscreen;
 
     // singleton for callbacks: avoids generation of extra .class files
-    private static StdDraw std = new StdDraw();
+    public static StdDraw std = new StdDraw();
 
     // the frame for drawing to the screen
-    private static JFrame frame;
+    public static JFrame frame;
 
     // mouse state
-    private static boolean isMousePressed = false;
-    private static double mouseX = 0;
-    private static double mouseY = 0;
+    public static boolean isMousePressed = false;
+    public static double mouseX = 0;
+    public static double mouseY = 0;
 
     // queue of typed key characters
-    private static LinkedList<Character> keysTyped = new LinkedList<Character>();
+    public static LinkedList<Character> keysTyped = new LinkedList<Character>();
 
     // set of key codes currently pressed down
-    private static TreeSet<Integer> keysDown = new TreeSet<Integer>();
+    public static TreeSet<Integer> keysDown = new TreeSet<Integer>();
 
     // singleton pattern: client can't instantiate
-    private StdDraw() { }
+    public StdDraw() { }
 
 
     // static initializer
@@ -664,7 +664,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     }
 
     // init
-    private static void init() {
+    public static void init() {
         if (frame != null) frame.setVisible(false);
         frame = new JFrame();
         offscreenImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -705,8 +705,8 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         frame.setVisible(true);
     }
 
-    // create the menu bar (changed to private)
-    private static JMenuBar createMenuBar() {
+    // create the menu bar (changed to public)
+    public static JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("File");
         menuBar.add(menu);
@@ -797,12 +797,12 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     }
 
     // helper functions that scale from user coordinates to screen coordinates and back
-    private static double  scaleX(double x) { return width  * (x - xmin) / (xmax - xmin); }
-    private static double  scaleY(double y) { return height * (ymax - y) / (ymax - ymin); }
-    private static double factorX(double w) { return w * width  / Math.abs(xmax - xmin);  }
-    private static double factorY(double h) { return h * height / Math.abs(ymax - ymin);  }
-    private static double   userX(double x) { return xmin + x * (xmax - xmin) / width;    }
-    private static double   userY(double y) { return ymax - y * (ymax - ymin) / height;   }
+    public static double  scaleX(double x) { return width  * (x - xmin) / (xmax - xmin); }
+    public static double  scaleY(double y) { return height * (ymax - y) / (ymax - ymin); }
+    public static double factorX(double w) { return w * width  / Math.abs(xmax - xmin);  }
+    public static double factorY(double h) { return h * height / Math.abs(ymax - ymin);  }
+    public static double   userX(double x) { return xmin + x * (xmax - xmin) / width;    }
+    public static double   userY(double y) { return ymax - y * (ymax - ymin) / height;   }
 
 
     /**
@@ -958,13 +958,13 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
     /**
      * Draws one pixel at (<em>x</em>, <em>y</em>).
-     * This method is private because pixels depend on the display.
+     * This method is public because pixels depend on the display.
      * To achieve the same effect, set the pen radius to 0 and call {@code point()}.
      *
      * @param  x the <em>x</em>-coordinate of the pixel
      * @param  y the <em>y</em>-coordinate of the pixel
      */
-    private static void pixel(double x, double y) {
+    public static void pixel(double x, double y) {
         offscreen.fillRect((int) Math.round(scaleX(x)), (int) Math.round(scaleY(y)), 1, 1);
     }
 
@@ -1246,7 +1246,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     *  Drawing images.
     ***************************************************************************/
     // get an image from the given filename
-    private static Image getImage(String filename) {
+    public static Image getImage(String filename) {
         if (filename == null) throw new IllegalArgumentException();
 
         // to read from file
@@ -1288,7 +1288,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     *               One advantage is that it returns a BufferedImage.
     ***************************************************************************/
 /*
-    private static BufferedImage getImage(String filename) {
+    public static BufferedImage getImage(String filename) {
         if (filename == null) throw new IllegalArgumentException();
 
         // from a file or URL
@@ -1565,7 +1565,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     }
 
     // draw onscreen if defer is false
-    private static void draw() {
+    public static void draw() {
         if (!defer) show();
     }
 

@@ -37,25 +37,25 @@ public final class StdAudio {
      */
     public static final int SAMPLE_RATE = 44100;
 
-    private static final int BYTES_PER_SAMPLE = 2;                // 16-bit audio
-    private static final int BITS_PER_SAMPLE = 16;                // 16-bit audio
-    private static final double MAX_16_BIT = Short.MAX_VALUE;     // 32,767
-    private static final int SAMPLE_BUFFER_SIZE = 4096;
+    public static final int BYTES_PER_SAMPLE = 2;                // 16-bit audio
+    public static final int BITS_PER_SAMPLE = 16;                // 16-bit audio
+    public static final double MAX_16_BIT = Short.MAX_VALUE;     // 32,767
+    public static final int SAMPLE_BUFFER_SIZE = 4096;
 
 
-    private static SourceDataLine line;   // to play the sound
-    private static byte[] buffer;         // our internal buffer
-    private static int bufferSize = 0;    // number of samples currently in internal buffer
+    public static SourceDataLine line;   // to play the sound
+    public static byte[] buffer;         // our internal buffer
+    public static int bufferSize = 0;    // number of samples currently in internal buffer
 
     // do not instantiate
-    private StdAudio() { }
+    public StdAudio() { }
 
    
     // static initializer
     static { init(); }
 
     // open up an audio stream
-    private static void init() {
+    public static void init() {
         try {
             // 44,100 samples per second, 16-bit audio, mono, signed PCM, little Endian
             AudioFormat format = new AudioFormat((float) SAMPLE_RATE, BITS_PER_SAMPLE, 1, true, false);
@@ -169,7 +169,7 @@ public final class StdAudio {
 
 
     // return data as a byte array
-    private static byte[] readByte(String filename) {
+    public static byte[] readByte(String filename) {
         byte[] data = null;
         AudioInputStream ais = null;
         try {
@@ -244,7 +244,7 @@ public final class StdAudio {
 
     // create a note (sine wave) of the given frequency (Hz), for the given
     // duration (seconds) scaled to the given volume (amplitude)
-    private static double[] note(double hz, double duration, double amplitude) {
+    public static double[] note(double hz, double duration, double amplitude) {
         int N = (int) (StdAudio.SAMPLE_RATE * duration);
         double[] a = new double[N+1];
         for (int i = 0; i <= N; i++)

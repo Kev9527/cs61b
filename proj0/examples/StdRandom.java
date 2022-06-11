@@ -64,8 +64,8 @@ import java.util.Random;
  */
 public final class StdRandom {
 
-    private static Random random;    // pseudo-random number generator
-    private static long seed;        // pseudo-random number generator seed
+    public static Random random;    // pseudo-random number generator
+    public static long seed;        // pseudo-random number generator seed
 
     // static initializer
     static {
@@ -75,7 +75,7 @@ public final class StdRandom {
     }
 
     // don't instantiate
-    private StdRandom() { }
+    public StdRandom() { }
 
     /**
      * Sets the seed of the pseudorandom number generator.

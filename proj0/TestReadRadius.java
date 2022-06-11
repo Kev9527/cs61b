@@ -12,7 +12,7 @@ public class TestReadRadius {
      *  @param  label       Label for the 'test' case
      *  @param  eps         Tolerance for the double comparison.
      */
-    private static void checkEquals(double actual, double expected, String label, double eps) {
+    public static void checkEquals(double actual, double expected, String label, double eps) {
         if (Math.abs(expected - actual) <= eps * Math.max(expected, actual)) {
             System.out.println("PASS: " + label + ": Expected " + expected + " and you gave " + actual);
         } else {
@@ -23,7 +23,7 @@ public class TestReadRadius {
     /**
      *  Checks the NBody.readRadius() method.
      */
-    private static void checkReadRadius() {
+    public static void checkReadRadius() {
         System.out.println("Checking readRadius...");
         String planetsTxtPath = "./data/planets.txt";
         /* If the following line fails to compile, you probably need to make
