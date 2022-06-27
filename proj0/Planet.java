@@ -2,7 +2,7 @@
  * Class Planet
  */
 public class Planet {
-    public static final double GRATIVATION_CONSTANT = 6.67E-11;
+    private static final double GRATIVATION_CONSTANT = 6.67E-11;
     public double xxPos;
     public double yyPos;
     public double xxVel;
