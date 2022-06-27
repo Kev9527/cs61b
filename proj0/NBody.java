@@ -1,3 +1,4 @@
+
 public class NBody {
     public static double readRadius(String filePath) {
         In in = new In(filePath);
@@ -33,18 +34,62 @@ public class NBody {
         String fileName = args[2];
         double radius = readRadius(fileName);
 
-        StdDraw.setScale(-radius,radius);
+        StdDraw.setScale(-radius, radius);
+
+        // get all planets
+        Planet[] planets = readPlanets(fileName);
+        int N = planets.length;
+
 
         // Drawing all the planets
-        Planet[] planets = readPlanets(fileName);
-        int lengthOfPlanets = planets.length;
-        for(int i = 0;i<lengthOfPlanets;i++ ){
-            planets[i].draw();
+//        for (int i = 0; i < N; i++) {
+//            planets[i].draw();
+//        }
+
+        // create animation
+        for (double time = 0; time < T; ) {
+            double[] xForces = new double[N];
+            double[] yForces = new double[N];
+
+            // iterate planets and calc forces of every planet
+            for (int i = 0; i < N; i++) {
+                Planet[] otherPlanets = new Planet[N - 1];
+                int k = 0;
+                for (int j = 0; j < N; j++) {
+                    if (j == i) continue;
+                    otherPlanets[k++] = planets[j];
+                }
+                xForces[i] = planets[i].calcNetForceExertedByX(otherPlanets);
+                yForces[i] = planets[i].calcNetForceExertedByY(otherPlanets);
+            }
+
+            // update planets params
+            for (int i = 0; i < N; i++) {
+                planets[i].update(dt, xForces[i], yForces[i]);
+            }
+
+            // draw background
+            StdDraw.picture(0D, 0D, "./images/starfield.jpg");
+
+            // draw every planet
+            for (int i = 0; i < N; i++) {
+                planets[i].draw();
+                StdDraw.enableDoubleBuffering();
+            }
+            StdDraw.show();
+            StdDraw.pause(20);
+            time += dt;
         }
 
-
+        // print the results
+        StdOut.printf("%d\n", planets.length);
+        StdOut.printf("%.2e\n", radius);
+        for (int i = 0; i < planets.length; i++) {
+            StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                    planets[i].xxPos, planets[i].yyPos, planets[i].xxVel,
+                    planets[i].yyVel, planets[i].mass, planets[i].imgFileName);
+        }
     }
-
 //    public static void drawBackground(double scale,String filePath) {
 //        StdDraw.clear();
 //        StdDraw.setScale(-scale/2,scale/2);

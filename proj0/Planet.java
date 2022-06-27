@@ -12,11 +12,12 @@ public class Planet {
 
     /**
      * Planet Constructor
-     * @param xP value of x position
-     * @param yP value of y position
-     * @param xV value of x velocity
-     * @param yV value of y velocity
-     * @param m value of this planet mass
+     *
+     * @param xP  value of x position
+     * @param yP  value of y position
+     * @param xV  value of x velocity
+     * @param yV  value of y velocity
+     * @param m   value of this planet mass
      * @param img image of this planet
      */
     public Planet(double xP, double yP, double xV,
@@ -83,15 +84,15 @@ public class Planet {
     }
 
     public void update(double dt, double fX, double fY) {
-        double acX = fX/this.mass;
-        double acY = fY/this.mass;
+        double acX = fX / this.mass;
+        double acY = fY / this.mass;
         this.xxVel = this.xxVel + dt * acX;
         this.yyVel = this.yyVel + dt * acY;
         this.xxPos = this.xxPos + dt * this.xxVel;
         this.yyPos = this.yyPos + dt * this.yyVel;
     }
 
-    public void draw(){
-        StdDraw.picture(xxPos,yyPos,"./images/" + imgFileName);
+    public void draw() {
+        StdDraw.picture(xxPos, yyPos, "./images/" + imgFileName);
     }
 }
