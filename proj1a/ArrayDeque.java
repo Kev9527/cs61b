@@ -1,7 +1,7 @@
 import com.sun.security.jgss.AuthorizationDataEntry;
 
 public class ArrayDeque<T> {
-    public T[] itemArray;
+    private T[] itemArray;
     private int first = 0;
     private int last = 1;
     private int capacity=10;

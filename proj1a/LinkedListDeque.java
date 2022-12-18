@@ -1,38 +1,41 @@
 public class LinkedListDeque<T> {
-    private class Item{
+    private class Node{
         public T item;
-        public Item before;
-        public Item after;
-        public Item(T item){
+        public Node prev;
+        public Node next;
+        public Node(T item, Node prev, Node next){
             this.item = item;
-            this.before=null;
-            this.after=null;
+            this.prev=prev;
+            this.next=next;
         }
+        public Node(Node prev, Node next) {
+            this.prev = prev;
+            this.next = next;
+        }
+
     }
-    private Item first;
-    private Item last;
+    private Node sentinel;
 
     private int size;
 
     public LinkedListDeque(){
-        this.size=0;
-        this.first=null;
-        this.last = null;
+        size=0;
+        sentinel = new Node(null,null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
     }
 
     public void addFirst(T item) {
-        Item newItem = new Item(item);
-        newItem.after = first;
-        first = newItem;
-        if (size==0) last = first;
+        Node newItem = new Node(item,sentinel,sentinel.next);
+        newItem.next.prev = newItem;
+        sentinel.next = newItem;
         size++;
     }
 
     public void addLast(T item) {
-        Item newItem = new Item(item);
-        newItem.before=last;
-        last.after = newItem;
-        last = newItem;
+        Node newItem = new Node(item,sentinel.next,sentinel);
+        newItem.prev.next = newItem;
+        sentinel.prev = newItem;
         size++;
     }
 
@@ -45,71 +48,57 @@ public class LinkedListDeque<T> {
     }
 
     public void printDeque(){
-        Item pointer = first;
-        for(int i =0;i<size;i++){
-            System.out.print(pointer + " ");
-            pointer = pointer.after;
+        if (size==0) {
+            return;
         }
-        System.out.println(" ");
+        Node pointer = sentinel.next;
+        while(pointer != sentinel) {
+            System.out.print(pointer.item + " ");
+            pointer = pointer.next;
+        }
     }
 
     public T removeFirst(){
         if (size==0) return null;
-        T itemRemoved = first.item;
-        if (size==1) {
-            first = null;
-            last = null;
-            size--;
-            return itemRemoved;
-        }
-        first = first.after;
+        Node nodeRemoved = sentinel.next;
+        T itemRemoved = nodeRemoved.item;
+        sentinel.next = nodeRemoved.next;
+        nodeRemoved.next.prev = sentinel;
         size--;
         return itemRemoved;
     }
 
     public T removeLast(){
         if (size==0) return null;
-        T itemRemoved = last.item;
-        if (size==1) {
-            first = null;
-            last = null;
-            size--;
-            return itemRemoved;
-        }
-        last = last.before;
+        Node nodeRemoved = sentinel.prev;
+        T itemRemoved = nodeRemoved.item;
+        sentinel.prev = nodeRemoved.prev;
+        nodeRemoved.prev.next = sentinel;
         size--;
         return itemRemoved;
     }
 
     public T get(int index){
         if(index >= size) return null;
-        Item pointer;
-        if (index < size/2) {
-            pointer = first;
-            for(int i=0;i<index;i++){
-                pointer = pointer.after;
-            }
-        } else {
-            pointer = last;
-            for(int i=size-1;i>index;i--){
-                pointer = pointer.before;
-            }
+        Node pointer = sentinel;
+        for (int i=0;i<index;i++){
+            pointer = pointer.next;
         }
-        return pointer.item;
+        return pointer.next.item;
     }
 
     public T getRecursive(int index){
         if (index >= size){
             return null;
         }
-        Item sentinel = this.first;
-        return getRecursiveHelper(index, sentinel);
+        Node pointer = sentinel.next;
+        return getRecursiveHelper(index, pointer);
     }
 
-    private T getRecursiveHelper(int index, Item sentinel){
+    private T getRecursiveHelper(int index, Node pointer){
         if (index==0) {
-            return sentinel.item;
+            return pointer.item;
         }
-        return getRecursiveHelper(index -1,sentinel.after);
+        return getRecursiveHelper(index -1,pointer.next);
     }
 }
