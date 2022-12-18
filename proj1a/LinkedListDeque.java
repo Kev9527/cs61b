@@ -3,6 +3,7 @@ public class LinkedListDeque<T> {
         public T item;
         public Node prev;
         public Node next;
+
         public Node(T item, Node prev, Node next){
             this.item = item;
             this.prev=prev;
@@ -27,14 +28,14 @@ public class LinkedListDeque<T> {
 
     public void addFirst(T item) {
         Node newItem = new Node(item,sentinel,sentinel.next);
-        newItem.next.prev = newItem;
+        sentinel.next.prev = newItem;
         sentinel.next = newItem;
         size++;
     }
 
     public void addLast(T item) {
         Node newItem = new Node(item,sentinel.next,sentinel);
-        newItem.prev.next = newItem;
+        sentinel.prev.next = newItem;
         sentinel.prev = newItem;
         size++;
     }
