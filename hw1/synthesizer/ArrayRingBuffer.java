@@ -83,7 +83,7 @@ public class ArrayRingBuffer<T>  extends AbstractBoundedQueue<T> implements Iter
         return new ArrayRingBufferIterator();
     }
 
-    public class ArrayRingBufferIterator implements Iterator<T>{
+    private class ArrayRingBufferIterator implements Iterator<T>{
         private int sentinel;
         public ArrayRingBufferIterator() {
             sentinel = 0;
